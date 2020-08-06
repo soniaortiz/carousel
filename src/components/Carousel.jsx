@@ -3,30 +3,45 @@ let images = [
     { name: 'test1', path: '../../logo192.png' },
     { name: 'test2', path: '../../gorilla_1f98d.png' },
     { name: 'test3', path: '../../grinning-face_1f600.png' },
+    { name: 'test1', path: '../../clown-face_1f921.png' },
+    { name: 'test2', path: '../../fencer_1f93a.png' },
+    { name: 'test3', path: '../../skier_26f7.png' },
 ]
 export class Carousel extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            current: '0item',
-            counter: 0
+            counter: 3,
+            selectedImg: images[0].path,
+            leftLimit: 0,
+            rightLimit: 2
         }
     }
 
     leftChevron = () => {
-        if (this.state.counter > 0) {
+        if (this.state.leftLimit >=0 && this.state.rightLimit >= 3) {
             this.setState({
-                counter: this.state.counter - 1
+                leftLimit: this.state.leftLimit - 1,
+                rightLimit: this.state.rightLimit - 1
             })
         }
     }
 
     rightChevron = () => {
-        if (this.state.counter < images.length - 1) {
-            this.setState({
-                counter: this.state.counter + 1
-            })
+        if (this.state.rightLimit < images.length - 1) {
+            this.setState(
+                {
+                    leftLimit: this.state.leftLimit + 1,
+                    rightLimit: this.state.rightLimit + 1
+                }
+            )
         }
+    }
+
+    displaySelectedPicture = (item) => {
+        this.setState({
+            selectedImg: item.path
+        })
     }
 
     createSlides() {
@@ -38,10 +53,12 @@ export class Carousel extends React.Component {
                             key={index + 'item'}
                             id={`${index}item`}
                             style={{
-                                display: this.state.counter === index ? "inline" : "none"
+                                display: index >= this.state.leftLimit && index <= this.state.rightLimit ? "inline" : "none",
                             }}
                         >
-                            <img src={`${item.path}`} alt="" />
+                            <button onClick={() => this.displaySelectedPicture(item)}>
+                                <img src={`${item.path}`} alt="" />
+                            </button>
                         </li>
                     })
                 }
@@ -50,14 +67,14 @@ export class Carousel extends React.Component {
     }
 
     render() {
-        let x = this.createSlides()
-        console.log(this.state.current)
-
         return (
             <div>
+                <div> <h5>Current picture</h5>
+                    <img src={this.state.selectedImg} alt="" />
+                </div>
                 <button
                     onClick={this.leftChevron}
-                >Left</button>
+                >{'<'}</button>
                 <div
                     style={
                         {
@@ -65,12 +82,12 @@ export class Carousel extends React.Component {
                         }
                     }
                 >
-                    {x}
+                    {this.createSlides()}
 
                 </div>
                 <button
                     onClick={this.rightChevron}
-                >Right</button>
+                > {'>'} </button>
             </div>
         )
     }
