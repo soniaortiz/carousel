@@ -93,17 +93,14 @@ export class Carousel extends React.Component {
                         }}
                     />
                 </div>
-                <div
-                    id="carouselHolder"
-                    style={{
-                        position: 'relative'
-                    }}
-                >
+                <div id="carouselHolder">
                     <button
                         onClick={this.leftChevron}
-                        style={{ //change style and btn not working
-                            position: 'relative',
+                        style={{ 
+                            position: 'fixed',
                             height: '100px',
+                            marginTop: '50px',
+
                         }}
                     >
                         {'<'}
@@ -113,7 +110,10 @@ export class Carousel extends React.Component {
                         style={
                             {
                                 display: "inline-block",
-                                position: 'relative'
+                                // position: 'fixed',
+                                marginTop: '0px',
+                                marginLeft: '10px',
+                                marginRight: '10px'
                             }
                         }
                     >
@@ -122,9 +122,9 @@ export class Carousel extends React.Component {
                     <button
                         onClick={this.rightChevron}
                         style={{
-                            position: 'absolute',
+                            position: 'fixed',
                             height: '100px',
-                            marginTop: '50px'
+                            marginTop: '50px',
                         }}
                     >
                         {'>'}
