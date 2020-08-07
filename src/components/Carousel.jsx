@@ -54,10 +54,24 @@ export class Carousel extends React.Component {
                             id={`${index}item`}
                             style={{
                                 display: index >= this.state.leftLimit && index <= this.state.rightLimit ? "inline" : "none",
+                                padding: '2px',
+                                margin: '1px',
                             }}
                         >
-                            <button onClick={() => this.displaySelectedPicture(item)}>
-                                <img src={`${item.path}`} alt="" />
+                            <button 
+                                onClick={() => this.displaySelectedPicture(item)}
+                                style={{
+                                    background: "white",
+                                    'border-radius': '10%',
+                                    maxHeight: '200px'
+                                    
+                                }}
+                            >
+                                <img src={`${item.path}`} alt="" 
+                                    style={{
+                                        height: '150px'
+                                    }}
+                                />
                             </button>
                         </li>
                     })
@@ -70,7 +84,12 @@ export class Carousel extends React.Component {
         return (
             <div>
                 <div> <h5>Current picture</h5>
-                    <img src={this.state.selectedImg} alt="" />
+                    <img 
+                    src={this.state.selectedImg} alt="" 
+                    style={{
+                        height: '300px'
+                    }}
+                    />
                 </div>
                 <button
                     onClick={this.leftChevron}
@@ -78,7 +97,8 @@ export class Carousel extends React.Component {
                 <div
                     style={
                         {
-                            display: "inline-block"
+                            display: "inline-block",
+                            position: 'relative'
                         }
                     }
                 >
