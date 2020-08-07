@@ -91,8 +91,14 @@ export class Carousel extends React.Component {
                     }}
                     />
                 </div>
+                <div>
                 <button
                     onClick={this.leftChevron}
+                    style={{
+                        position: 'absolute',
+                        height: '100px',
+                        marginTop: '50px'
+                    }}
                 >{'<'}</button>
                 <div
                     style={
@@ -107,8 +113,14 @@ export class Carousel extends React.Component {
                 </div>
                 <button
                     onClick={this.rightChevron}
+                    style={{
+                        position: 'absolute',
+                        height: '100px',
+                        marginTop: '50px'
+                    }}
                 > {'>'} </button>
-            </div>
+                </div>
+           </div>
         )
     }
 }
