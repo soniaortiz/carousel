@@ -19,10 +19,11 @@ export class Carousel extends React.Component {
     }
 
     leftChevron = () => {
-        if (this.state.leftLimit >=0 && this.state.rightLimit >= 3) {
+        console.log('>>>>', this.state)
+        if (this.state.leftLimit >= 0 && this.state.rightLimit >= 3) {
             this.setState({
-                leftLimit: this.state.leftLimit - 1,
-                rightLimit: this.state.rightLimit - 1
+                leftLimit: this.state.leftLimit - 3,
+                rightLimit: this.state.rightLimit - 3
             })
         }
     }
@@ -31,8 +32,8 @@ export class Carousel extends React.Component {
         if (this.state.rightLimit < images.length - 1) {
             this.setState(
                 {
-                    leftLimit: this.state.leftLimit + 1,
-                    rightLimit: this.state.rightLimit + 1
+                    leftLimit: this.state.leftLimit + 3,
+                    rightLimit: this.state.rightLimit + 3
                 }
             )
         }
@@ -58,16 +59,16 @@ export class Carousel extends React.Component {
                                 margin: '1px',
                             }}
                         >
-                            <button 
+                            <button
                                 onClick={() => this.displaySelectedPicture(item)}
                                 style={{
                                     background: "white",
-                                    'border-radius': '10%',
+                                    borderRadius: '10%',
                                     maxHeight: '200px'
-                                    
+
                                 }}
                             >
-                                <img src={`${item.path}`} alt="" 
+                                <img src={`${item.path}`} alt=""
                                     style={{
                                         height: '150px'
                                     }}
@@ -83,44 +84,49 @@ export class Carousel extends React.Component {
     render() {
         return (
             <div>
-                <div> <h5>Current picture</h5>
-                    <img 
-                    src={this.state.selectedImg} alt="" 
-                    style={{
-                        height: '300px'
-                    }}
+                <div id="currentImg">
+                    <h5>Current picture</h5>
+                    <img
+                        src={this.state.selectedImg} alt=""
+                        style={{
+                            height: '300px'
+                        }}
                     />
                 </div>
-                <div>
+                <div id="carouselHolder">
                 <button
-                    onClick={this.leftChevron}
-                    style={{
-                        position: 'absolute',
-                        height: '100px',
-                        marginTop: '50px'
-                    }}
-                >{'<'}</button>
-                <div
-                    style={
-                        {
-                            display: "inline-block",
-                            position: 'relative'
+                        onClick={this.leftChevron}
+                        style={{
+                            marginTop: '50px',
+                            position: 'relative',
+                            height: '100px',
+                        }}
+                    >
+                        {'<'}
+                    </button>
+                    <div
+                        id="imgCarouselHolder"
+                        style={
+                            {
+                                display: "inline-block",
+                                position: 'relative'
+                            }
                         }
-                    }
-                >
-                    {this.createSlides()}
-
+                    >
+                        {this.createSlides()}
+                    </div>
+                    <button
+                        onClick={this.rightChevron}
+                        style={{
+                            position: 'absolute',
+                            height: '100px',
+                            marginTop: '50px'
+                        }}
+                    >
+                        {'>'}
+                    </button>
                 </div>
-                <button
-                    onClick={this.rightChevron}
-                    style={{
-                        position: 'absolute',
-                        height: '100px',
-                        marginTop: '50px'
-                    }}
-                > {'>'} </button>
-                </div>
-           </div>
+            </div>
         )
     }
 }
