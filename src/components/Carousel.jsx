@@ -93,11 +93,15 @@ export class Carousel extends React.Component {
                         }}
                     />
                 </div>
-                <div id="carouselHolder">
-                <button
+                <div
+                    id="carouselHolder"
+                    style={{
+                        position: 'relative'
+                    }}
+                >
+                    <button
                         onClick={this.leftChevron}
-                        style={{
-                            marginTop: '50px',
+                        style={{ //change style and btn not working
                             position: 'relative',
                             height: '100px',
                         }}
